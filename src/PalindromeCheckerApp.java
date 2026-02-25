@@ -1,32 +1,25 @@
 /**
- * MAIN CLASS - PalindromeCheckerApp
- * Use Case 2: Hardcoded Palindrome Validation
+ * UC3: Palindrome Check Using String Reverse
+ * @author Developer
+ * @version 3.0
  */
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
-        // UC1: Welcome Message
-        System.out.println("Welcome to the Palindrome Checker Management System");
-        System.out.println("Version : 2.0");
+        // Application entry point for VC3
+        String input = "madam";
+        String reversed = "";
 
-        // UC2: Hardcoded Palindrome Logic
-        String input = "radar"; // Predefined string
-        boolean isPalindrome = true;
-
-        // Loop only till half of the string length (Hint provided)
-        for (int i = 0; i < input.length() / 2; i++) {
-            // Compare character from start with character from end
-            if (input.charAt(i) != input.charAt(input.length() - 1 - i)) {
-                isPalindrome = false;
-                break;
-            }
+        // Hint: Iterate from the last character to the first
+        for (int i = input.length() - 1; i >= 0; i--) {
+            reversed = reversed + input.charAt(i);
         }
 
-        // Display the result
-        if (isPalindrome) {
-            System.out.println("The string '" + input + "' is a Palindrome.");
+        // Compares original and reversed strings
+        if (input.equals(reversed)) {
+            System.out.println("Result: '" + input + "' is a Palindrome.");
         } else {
-            System.out.println("The string '" + input + "' is NOT a Palindrome.");
+            System.out.println("Result: '" + input + "' is NOT a Palindrome.");
         }
     }
 }
