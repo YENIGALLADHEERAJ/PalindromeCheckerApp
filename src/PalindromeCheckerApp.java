@@ -1,35 +1,31 @@
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 /**
- * UC6: Queue + Stack Based Palindrome Check
- * Goal: Demonstrate FIFO vs LIFO behavior.
+ * UC7: Deque-Based Optimized Palindrome Checker
+ * Goal: Use Deque to compare front and rear elements.
  */
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
-        // Define the input string to validate
-        String input = "civic";
+        // Define the input string
+        String input = "refer";
 
-        // Create a Queue to store characters in FIFO order
-        Queue<Character> queue = new LinkedList<>();
-        // Create a Stack to store characters in LIFO order
-        Stack<Character> stack = new Stack<>();
+        // Create a Deque to store characters
+        Deque<Character> deque = new ArrayDeque<>();
 
-        // Insert each character into both queue and stack
+        // Add each character to the deque
         for (char c : input.toCharArray()) {
-            queue.add(c);  // Enqueue
-            stack.push(c); // Push
+            deque.addLast(c);
         }
 
-        // Flag to track palindrome status
+        // Flag to track palindrome result
         boolean isPalindrome = true;
 
-        // Compare characters until the queue becomes empty
-        while (!queue.isEmpty()) {
-            // dequeue (FIFO) vs pop (LIFO)
-            if (!queue.poll().equals(stack.pop())) {
+        // Continue comparison while more than one element exists
+        while (deque.size() > 1) {
+            // Remove and compare first and last characters
+            if (!deque.removeFirst().equals(deque.removeLast())) {
                 isPalindrome = false;
                 break;
             }
