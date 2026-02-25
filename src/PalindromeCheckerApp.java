@@ -1,25 +1,36 @@
 /**
- * UC3: Palindrome Check Using String Reverse
- * @author Developer
- * @version 3.0
+ * UC4: Character Array Based Palindrome Check
+ * Goal: Use two-pointer approach for efficiency.
  */
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
-        // Application entry point for VC3
-        String input = "madam";
-        String reversed = "";
+        // Declare and initialize the input string
+        String input = "radar";
 
-        // Hint: Iterate from the last character to the first
-        for (int i = input.length() - 1; i >= 0; i--) {
-            reversed = reversed + input.charAt(i);
+        // Convert the string into a character array
+        char[] chars = input.toCharArray();
+
+        // Initialize pointer at the beginning
+        int start = 0;
+        // Initialize pointer at the end
+        int end = chars.length - 1;
+
+        // Assume palindrome initially
+        boolean isPalindrome = true;
+
+        // Continue comparison until pointers cross (Two-pointer technique)
+        while (start < end) {
+            if (chars[start] != chars[end]) {
+                isPalindrome = false;
+                break; // Exit loop if a mismatch is found
+            }
+            start++; // Move forward
+            end--;   // Move backward
         }
 
-        // Compares original and reversed strings
-        if (input.equals(reversed)) {
-            System.out.println("Result: '" + input + "' is a Palindrome.");
-        } else {
-            System.out.println("Result: '" + input + "' is NOT a Palindrome.");
-        }
+        // Display result as shown in the requirement
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome? : " + isPalindrome);
     }
 }
