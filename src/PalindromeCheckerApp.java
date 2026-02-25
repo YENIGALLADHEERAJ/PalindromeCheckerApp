@@ -1,37 +1,38 @@
-import java.util.LinkedList;
-
 /**
- * UC8: Linked List Based Palindrome Checker
- * Goal: Use LinkedList to store and compare characters.
+ * UC9: Recursive Palindrome Checker
+ * Goal: Demonstrate divide-and-conquer using method recursion.
  */
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
-        // Define the input string
-        String input = "level";
+        String input = "madam";
 
-        // Create a LinkedList to store characters
-        LinkedList<Character> list = new LinkedList<>();
+        // Initial call to recursive method: start at index 0, end at last index
+        boolean result = check(input, 0, input.length() - 1);
 
-        // Add each character to the linked list
-        for (char c : input.toCharArray()) {
-            list.add(c);
-        }
-
-        // Flag to track palindrome state
-        boolean isPalindrome = true;
-
-        // Compare until only one or zero elements remain
-        while (list.size() > 1) {
-            // Remove first and last elements and compare
-            if (!list.removeFirst().equals(list.removeLast())) {
-                isPalindrome = false;
-                break;
-            }
-        }
-
-        // Display result as shown in the requirement
         System.out.println("Input : " + input);
-        System.out.println("Is Palindrome? : " + isPalindrome);
+        System.out.println("Is Palindrome? : " + result);
+    }
+
+    /**
+     * Recursively checks whether a string is a palindrome.
+     * @param s Input string
+     * @param start Starting index
+     * @param end Ending index
+     * @return true if palindrome, otherwise false
+     */
+    private static boolean check(String s, int start, int end) {
+        // Base Case: If pointers cross, all characters matched
+        if (start >= end) {
+            return true;
+        }
+
+        // Base Case: Mismatch found
+        if (s.charAt(start) != s.charAt(end)) {
+            return false;
+        }
+
+        // Recursive Call: Move pointers inward
+        return check(s, start + 1, end - 1);
     }
 }
